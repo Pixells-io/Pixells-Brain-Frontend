@@ -1,0 +1,159 @@
+.text-gradient-home {
+  font-family: "Poppins", sans-serif;
+  font-weight: 400;
+  font-size: 2.875rem;
+  line-height: 69px;
+  background: linear-gradient(
+    208.5deg,
+    #ffac46,
+    #ff9546,
+    #ff8046,
+    #ff753c,
+    #ff6932,
+    #ff7884,
+    #ff8dff,
+    #e284ff,
+    #c67bff,
+    #a872ff,
+    #8c69ff,
+    #857aff,
+    #7c8fff,
+    #73a3ff,
+    #69b9ff,
+    #7fd6ff,
+    #51d5ff
+  );
+  background-size: 200% 200%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: gradient 15s ease infinite;
+}
+
+.gradient-radius {
+  position: relative;
+  border-radius: 8px;
+  background: linear-gradient(
+    208.5deg,
+    #ffac46,
+    #ff9546,
+    #ff8046,
+    #ff753c,
+    #ff6932,
+    #ff7884,
+    #ff8dff,
+    #e284ff,
+    #c67bff,
+    #a872ff,
+    #8c69ff,
+    #857aff,
+    #7c8fff,
+    #73a3ff,
+    #69b9ff,
+    #7fd6ff,
+    #51d5ff
+  );
+  padding: 6px;
+}
+
+.gradient-radius::after {
+  content: "";
+  position: absolute;
+  inset: 6px;
+  background: white;
+  border-radius: 4px;
+  z-index: 1;
+}
+
+@keyframes gradient {
+  0% {
+      background-position: 0% 50%;
+  }
+  50% {
+      background-position: 100% 50%;
+  }
+  100% {
+      background-position: 0% 50%;
+  }
+}
+
+.tempered-glass {
+  box-shadow: 0px 0px 8px 0px #00000040;
+  background: rgba(255, 255, 255, 0.1); /* Fondo semitransparente */
+  color: white;
+  backdrop-filter: blur(10px); /* Desenfoque del fondo */
+}
+
+.blurred-image {
+  filter: blur(8px); /* Aplica el desenfoque */
+  transition: filter 0.3s ease; /* Transición suave para el desenfoque */
+}
+
+.second-banner-gradient{
+  background: linear-gradient(137.89deg, #008AF9 -9.53%, #9065F8 104.63%);
+}
+
+.pixells-inteligence-gradient {
+  background: linear-gradient(271.92deg, #FFAC46 1.46%, #FF9546 3.05%, #FF8046 4.5%, #FF753C 5.92%, #FF6932 7.37%, #FF7884 8.72%, #FF8DFF 10.63%, #E284FF 12.29%, #C67BFF 13.64%, #A872FF 15.03%, #8C69FF 16.22%, #857AFF 17.46%, #7C8FFF 19.36%, #73A3FF 20.89%, #69B9FF 22.07%, #7FD6FF 23.32%, #51D5FF 24.41%, #51D5FF 25.27%, #FFFFFF 25.78%);
+  background-size: 200% 200%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: gradient 10s ease infinite;
+}
+
+.crispin-title-gradient {
+  font-family: Roboto;
+  font-size: 16px;
+  font-weight: 600;
+  line-height: 18px;
+  text-align: left;
+  text-underline-position: from-font;
+  text-decoration-skip-ink: none;
+  background: linear-gradient(90deg, #44444F 7.38%, #9C9CB5 26.93%);
+  background-size: 200% 200%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: gradient 4s ease infinite;
+}
+
+.tempered-glass-effect {
+  border-radius: 8px;  /* Bordes redondeados */
+  border-left: 8px solid rgba(255, 255, 255, 0.2);
+  border-top: 8px solid rgba(255, 255, 255, 0.2);
+}
+
+.text-gradient-home-black {
+  line-height: 69px;
+  background: linear-gradient(259.12deg, #FFAC46 -10.99%, #FF9546 -3.58%, #FF8046 3.15%, #FF753C 9.74%, #FF6932 16.47%, #FF7884 22.73%, #FF8DFF 31.58%, #E284FF 39.33%, #C67BFF 45.57%, #A872FF 52.02%, #8C69FF 57.54%, #857AFF 63.3%, #7C8FFF 72.16%, #73A3FF 79.24%, #69B9FF 84.73%, #7FD6FF 90.52%, #51D5FF 95.57%, #51D5FF 100.98%);
+  background-size: 200% 200%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: gradient 15s ease infinite;
+}
+
+
+.rotate-img {
+  transform: rotateX(40deg) rotateY(20deg);
+  transition: transform 0.3s ease;
+}
+
+.rotate-img:hover {
+  transform: rotateX(30deg) rotateY(0deg);
+}
+
+@keyframes scrollRotate {
+  from {
+    transform: rotateX(40deg) rotateY(20deg);
+  }
+  to {
+    transform: rotateX(30deg) rotateY(0deg);
+  }
+}
+
+.rotate-img.scrolling {
+  animation: scrollRotate 0.5s ease forwards;
+}
+

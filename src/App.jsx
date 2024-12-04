@@ -1,33 +1,30 @@
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
-import Menu from "./layouts/Menu";
-import TermsConditions from "./pages/Landing/TermsConditions";
-import PrivacyNotice from "./pages/Landing/PrivacyNotice";
+import MenuTop from "./layouts/MenuTop";
+import SideLayout from "./pages/SideLayout";
+import MainSuscriptions from "./pages/Suscriptions/MainSuscriptions";
+import Users, { action as ActionUser } from "./pages/Admin/Users";
 
 //Layouts
 
 const router = createBrowserRouter([
   {
     path: "/",
-    element: <Menu />,
+    element: <MenuTop />,
     children: [
       {
-        index: true,
-        lazy: async () => {
-          const { default: Component } = await import(
-            "./pages/Landing/HomePage"
-          );
-          return {
-            Component,
-          };
-        },
-      },
-      {
-        path: "/terminos-y-condiciones",
-        element: <TermsConditions />,
-      },
-      {
-        path: "/aviso-de-privacidad",
-        element: <PrivacyNotice />,
+        path: "/",
+        element: <SideLayout />,
+        children: [
+          {
+            path: "/suscriptions",
+            element: <MainSuscriptions />,
+          },
+          {
+            path: "/users",
+            element: <Users />,
+            action: ActionUser,
+          },
+        ],
       },
     ],
   },

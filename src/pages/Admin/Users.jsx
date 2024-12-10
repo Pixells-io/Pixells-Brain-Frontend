@@ -8,19 +8,18 @@ import {
 import { IonIcon } from "@ionic/react";
 import { add } from "ionicons/icons";
 import React, { useState } from "react";
-import { NavLink, redirect } from "react-router-dom";
+import { NavLink, redirect, useLoaderData } from "react-router-dom";
 import ModalCreateUser from "./Modals/ModalCreateUser";
-import { createUser } from "./utils";
+import { createUser, destroyUser, editUser } from "./utils";
+import UsersTable from "./Tables/UsersTable";
 
 function Users() {
   const [modal, setModal] = useState(false);
+  const { data } = useLoaderData();
 
   return (
     <div className="px-10 py-10">
       <ModalCreateUser modal={modal} setModal={setModal} />
-      <div className="flex items-center gap-16">
-        <h2 className="font-poppins font-bold text-[#44444F]">ORGANIZACIÓN</h2>
-      </div>
       <div className="flex justify-between pt-8">
         <span className="font-poppins text-[20px] font-bold text-[#44444F]">
           Gestión de Usuarios
@@ -46,6 +45,9 @@ function Users() {
           </DropdownMenu>
         </div>
       </div>
+      <div>
+        <UsersTable users={data} />
+      </div>
     </div>
   );
 }
@@ -62,11 +64,16 @@ export async function action({ request }) {
       return redirect("/users");
       break;
 
-    case "edit-area":
-      await editArea(data);
-      return redirect("/organization");
+    case "edit-user":
+      await editUser(data);
+      return redirect("/users");
+      break;
+
+    case "destroy-user":
+      await destroyUser(data);
+      return redirect("/users");
       break;
   }
 
-  return redirect("/organization");
+  return redirect("/users");
 }

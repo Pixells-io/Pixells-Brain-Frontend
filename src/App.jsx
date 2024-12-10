@@ -3,6 +3,8 @@ import MenuTop from "./layouts/MenuTop";
 import SideLayout from "./pages/SideLayout";
 import MainSuscriptions from "./pages/Suscriptions/MainSuscriptions";
 import Users, { action as ActionUser } from "./pages/Admin/Users";
+import { getUsers } from "./pages/Admin/utils";
+import Login, { action as LoginAction } from "./pages/Login/Login";
 
 //Layouts
 
@@ -22,11 +24,17 @@ const router = createBrowserRouter([
           {
             path: "/users",
             element: <Users />,
+            loader: getUsers,
             action: ActionUser,
           },
         ],
       },
     ],
+  },
+  {
+    path: "/login",
+    element: <Login />,
+    action: LoginAction,
   },
 ]);
 

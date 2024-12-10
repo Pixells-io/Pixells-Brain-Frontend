@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 
 import {
   DropdownMenu,
@@ -10,13 +10,28 @@ import {
 import { Avatar, AvatarImage } from "@/components/ui/avatar";
 import { IonIcon } from "@ionic/react";
 import { logOut } from "ionicons/icons";
-import { Outlet } from "react-router-dom";
+import { Outlet, useNavigate } from "react-router-dom";
+import { getUserByToken } from "@/pages/Login/utils";
+import Cookies from "js-cookie";
 
 function MenuTop() {
   const userData = [];
+  const token = Cookies.get("token");
+  const navigate = useNavigate();
+  const [user, setUser] = useState(null);
+
+  /*useEffect(() => {
+    async function fetchData() {
+      const user = await getUserByToken();
+      if (user.code == 400) return navigate("/login");
+      setUser(user?.data);
+    }
+    fetchData();
+    if (token == undefined || user.status == 500) return navigate("/login");
+  }, [token]);*/
 
   return (
-    <div>
+    <div className="h-screen min-h-0 overflow-hidden">
       <div className="w-full border-b border-[#dddddd] px-6 py-2 text-end">
         <DropdownMenu className="">
           <DropdownMenuTrigger>

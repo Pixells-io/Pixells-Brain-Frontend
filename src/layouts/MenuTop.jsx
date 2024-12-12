@@ -20,7 +20,7 @@ function MenuTop() {
   const navigate = useNavigate();
   const [user, setUser] = useState(null);
 
-  /*useEffect(() => {
+  useEffect(() => {
     async function fetchData() {
       const user = await getUserByToken();
       if (user.code == 400) return navigate("/login");
@@ -28,7 +28,7 @@ function MenuTop() {
     }
     fetchData();
     if (token == undefined || user.status == 500) return navigate("/login");
-  }, [token]);*/
+  }, [token]);
 
   return (
     <div className="h-screen min-h-0 overflow-hidden">

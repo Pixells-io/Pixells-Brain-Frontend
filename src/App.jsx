@@ -5,6 +5,7 @@ import MainSuscriptions from "./pages/Suscriptions/MainSuscriptions";
 import Users, { action as ActionUser } from "./pages/Admin/Users";
 import { getUsers } from "./pages/Admin/utils";
 import Login, { action as LoginAction } from "./pages/Login/Login";
+import { getSuscriptions } from "./pages/Suscriptions/utils";
 
 //Layouts
 
@@ -20,6 +21,7 @@ const router = createBrowserRouter([
           {
             path: "/suscriptions",
             element: <MainSuscriptions />,
+            loader: getSuscriptions,
           },
           {
             path: "/users",

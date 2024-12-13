@@ -15,19 +15,18 @@ import { getUserByToken } from "@/pages/Login/utils";
 import Cookies from "js-cookie";
 
 function MenuTop() {
-  const userData = [];
   const token = Cookies.get("token");
   const navigate = useNavigate();
-  const [user, setUser] = useState(null);
+  const [userData, setUserData] = useState([]);
 
   useEffect(() => {
     async function fetchData() {
       const user = await getUserByToken();
       if (user.code == 400) return navigate("/login");
-      setUser(user?.data);
+      setUserData(user?.data);
+      if (token == undefined || user.status == 500) return navigate("/login");
     }
     fetchData();
-    if (token == undefined || user.status == 500) return navigate("/login");
   }, [token]);
 
   return (
@@ -57,7 +56,6 @@ function MenuTop() {
                 </div>
                 <div>
                   <p className="text-base font-semibold text-grisText">
-                    Usuario
                     {userData?.name}&nbsp;{userData?.last_name}&nbsp;
                     {userData?.second_last_name}
                   </p>

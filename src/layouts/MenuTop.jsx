@@ -19,6 +19,7 @@ function MenuTop() {
   const navigate = useNavigate();
   const [userData, setUserData] = useState([]);
 
+  /* Login Validator */
   useEffect(() => {
     async function fetchData() {
       const user = await getUserByToken();

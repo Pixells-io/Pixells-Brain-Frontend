@@ -5,8 +5,6 @@ import SuscriptionsTable from "./Tables/SuscriptionsTable";
 function MainSuscriptions() {
   const { data } = useLoaderData();
 
-  console.log(data);
-
   return (
     <div className="px-10 py-10">
       <div className="flex justify-between pt-8">

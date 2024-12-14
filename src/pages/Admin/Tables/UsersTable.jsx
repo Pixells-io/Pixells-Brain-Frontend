@@ -19,12 +19,12 @@ function UsersTable({ users }) {
     columnHelper.accessor((row) => `${row?.name}`, {
       id: "name",
       accessorKey: "name",
-      header: "NAME",
+      header: "NOMBRE",
     }),
     columnHelper.accessor((row) => `${row?.email}`, {
       id: "email",
       accessorKey: "email",
-      header: "EMAIL",
+      header: "Email",
     }),
     {
       accessorKey: "actions",

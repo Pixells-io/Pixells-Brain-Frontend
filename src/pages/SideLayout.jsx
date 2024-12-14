@@ -1,6 +1,11 @@
 import React, { useEffect, useState } from "react";
 import { Outlet, NavLink } from "react-router-dom";
-import { accessibilityOutline, cardOutline, disc } from "ionicons/icons";
+import {
+  accessibilityOutline,
+  cardOutline,
+  clipboardOutline,
+  disc,
+} from "ionicons/icons";
 import { IonIcon } from "@ionic/react";
 
 function SideLayout() {
@@ -16,6 +21,12 @@ function SideLayout() {
       name: "Suscripciones",
       subname: "Stripe",
       icon: cardOutline,
+    },
+    {
+      path: "/",
+      name: "Codigos de Descuento",
+      subname: "Suscripciones",
+      icon: clipboardOutline,
     },
   ];
 

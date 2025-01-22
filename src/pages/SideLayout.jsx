@@ -23,8 +23,8 @@ function SideLayout() {
       icon: cardOutline,
     },
     {
-      path: "/",
-      name: "Codigos de Descuento",
+      path: "/discounts",
+      name: "Descuentos",
       subname: "Suscripciones",
       icon: clipboardOutline,
     },

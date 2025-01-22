@@ -14,12 +14,34 @@ function UsersTable({ users }) {
   const [data, setDataPusher] = useState(initialData);
   const [modalDestroy, setModalDestroy] = useState(null);
   const [modal, setModal] = useState(false);
+  const [userInfo, setUserInfo] = useState([]);
+  const [userId, setUserId] = useState(0);
+
+  function openModalEdit(user) {
+    setUserInfo(user);
+    setModal(true);
+  }
+
+  function openModalDestroy(id) {
+    setUserId(id);
+    setModalDestroy(true);
+  }
 
   const columns = [
     columnHelper.accessor((row) => `${row?.name}`, {
       id: "name",
       accessorKey: "name",
       header: "NOMBRE",
+    }),
+    columnHelper.accessor((row) => `${row?.role}`, {
+      id: "role",
+      accessorKey: "role",
+      header: "TIPO",
+    }),
+    columnHelper.accessor((row) => `${row?.seller_code}`, {
+      id: "seller_code",
+      accessorKey: "seller_code",
+      header: "Codigo",
     }),
     columnHelper.accessor((row) => `${row?.email}`, {
       id: "email",
@@ -33,25 +55,15 @@ function UsersTable({ users }) {
       cell: ({ row }) => {
         return (
           <div className="flex gap-2 text-[#696974]">
-            <ModalShowUser
-              user={row.original}
-              modal={modal}
-              setModal={setModal}
-            />
-            <ModalDestroyUser
-              id={row.original?.id}
-              modal={modalDestroy}
-              setModal={setModalDestroy}
-            />
             <IonIcon
               icon={informationCircleOutline}
               className="h-5 w-5"
-              onClick={() => setModal(true)}
+              onClick={() => openModalEdit(row.original)}
             ></IonIcon>
             <IonIcon
               icon={trashOutline}
               className="h-5 w-5"
-              onClick={() => setModalDestroy(true)}
+              onClick={() => openModalDestroy(row.original.id)}
             ></IonIcon>
           </div>
         );
@@ -61,6 +73,12 @@ function UsersTable({ users }) {
 
   return (
     <div className="h-full w-full overflow-auto">
+      <ModalShowUser user={userInfo} modal={modal} setModal={setModal} />
+      <ModalDestroyUser
+        id={userId}
+        modal={modalDestroy}
+        setModal={setModalDestroy}
+      />
       <DataTable data={data} columns={columns} searchNameFilter={"Search"} />
     </div>
   );

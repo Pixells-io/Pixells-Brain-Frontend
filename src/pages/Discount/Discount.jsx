@@ -9,21 +9,20 @@ import { IonIcon } from "@ionic/react";
 import { add } from "ionicons/icons";
 import React, { useState } from "react";
 import { NavLink, redirect, useLoaderData } from "react-router-dom";
-import ModalCreateUser from "./Modals/ModalCreateUser";
-import { createUser, destroyUser, editUser } from "./utils";
-import UsersTable from "./Tables/UsersTable";
+import DiscountTable from "./Tables/DiscountTable";
+import ModalCreateDiscount from "./Modals/CreateDiscount";
+import { createDiscount, destroyDiscount } from "./utils";
 
-function Users() {
+function Discounts() {
   const [modal, setModal] = useState(false);
   const { data } = useLoaderData();
-  const [info, setInfo] = useState(data);
 
   return (
     <div className="px-10 py-10">
-      <ModalCreateUser modal={modal} setModal={setModal} />
+      <ModalCreateDiscount modal={modal} setModal={setModal} />
       <div className="flex justify-between pt-8">
         <span className="font-poppins text-[20px] font-bold text-[#44444F]">
-          Gestión de Usuarios
+          Gestión de Descuentos
         </span>
         <div className="flex justify-end">
           <DropdownMenu>
@@ -39,7 +38,7 @@ function Users() {
             <DropdownMenuContent>
               <DropdownMenuItem>
                 <NavLink className="w-full" onClick={() => setModal(true)}>
-                  Usuarios
+                  Codigo
                 </NavLink>
               </DropdownMenuItem>
             </DropdownMenuContent>
@@ -47,34 +46,29 @@ function Users() {
         </div>
       </div>
       <div>
-        <UsersTable users={info} />
+        <DiscountTable discounts={data} />
       </div>
     </div>
   );
 }
 
-export default Users;
+export default Discounts;
 
 export async function action({ request }) {
   const data = await request.formData();
   const action = data.get("action");
 
   switch (action) {
-    case "create-user":
-      await createUser(data);
-      return redirect("/users");
+    case "create-discount":
+      await createDiscount(data);
+      return redirect("/discounts");
       break;
 
-    case "edit-user":
-      await editUser(data);
-      return redirect("/users");
-      break;
-
-    case "destroy-user":
-      await destroyUser(data);
-      return redirect("/users");
+    case "destroy-discount":
+      await destroyDiscount(data);
+      return redirect("/discounts");
       break;
   }
 
-  return redirect("/users");
+  return redirect("/discounts");
 }

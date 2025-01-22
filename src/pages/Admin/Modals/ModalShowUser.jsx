@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 
 import { Form } from "react-router-dom";
 import {
@@ -15,6 +15,15 @@ import { create } from "ionicons/icons";
 
 function ModalShowUser({ modal, setModal, user }) {
   const [disabled, setDisabled] = useState(true);
+  const [type, setType] = useState(1);
+
+  useEffect(() => {
+    if (user?.role === "Admin") {
+      setType(1);
+    } else {
+      setType(2);
+    }
+  }, [modal, user]);
 
   return (
     <Dialog open={modal} onOpenChange={setModal}>
@@ -65,6 +74,27 @@ function ModalShowUser({ modal, setModal, user }) {
             type="password"
             disabled={disabled}
           />
+          <select
+            name="role"
+            value={type}
+            disabled={disabled}
+            onChange={(e) => setType(e.target.value)}
+            className="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
+            required
+          >
+            <option value="1">Administrador</option>
+            <option value="2">Vendedor</option>
+          </select>
+          {type == 2 && (
+            <Input
+              placeholder="Codigo de Vendedor"
+              name="seller_code"
+              disabled={disabled}
+              defaultValue={user.seller_code}
+              type="text"
+              required
+            />
+          )}
           <DialogFooter className="px-10 pb-6">
             {disabled == false ? (
               <Button

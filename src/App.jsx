@@ -6,6 +6,8 @@ import Users, { action as ActionUser } from "./pages/Admin/Users";
 import { getUsers } from "./pages/Admin/utils";
 import Login, { action as LoginAction } from "./pages/Login/Login";
 import { getSuscriptions } from "./pages/Suscriptions/utils";
+import Discounts, { action as ActionDiscount } from "./pages/Discount/Discount";
+import { getDiscounts } from "./pages/Discount/utils";
 
 //Layouts
 
@@ -28,6 +30,12 @@ const router = createBrowserRouter([
             element: <Users />,
             loader: getUsers,
             action: ActionUser,
+          },
+          {
+            path: "/discounts",
+            element: <Discounts />,
+            loader: getDiscounts,
+            action: ActionDiscount,
           },
         ],
       },

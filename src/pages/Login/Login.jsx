@@ -88,7 +88,7 @@ function Login() {
       <div className="p-20">
         <div className="text-center">
           <span className="font-roboto text-2xl font-light text-grisText">
-            Sign in
+            Iniciar Sesion
           </span>
         </div>
         <Form method="POST" action="/login">
@@ -156,7 +156,7 @@ function Login() {
       <div className="absolute inset-x-0 bottom-0 bg-grisBg">
         <div className="mb-3 mt-3 flex w-screen">
           <div className="w-1/10 border-2 border-transparent border-r-stone-300 p-1 pl-6 pr-6 text-xs text-grisText">
-            <span>Copyright © 2024 Pixells Inc. </span>
+            <span>Copyright © 2024 Yacamba Inc. </span>
           </div>
           <div className="w-1/10 border-2 border-transparent border-r-stone-300 p-1 pl-6 pr-6 text-xs text-grisText">
             <span>Todos los derechos reservados </span>

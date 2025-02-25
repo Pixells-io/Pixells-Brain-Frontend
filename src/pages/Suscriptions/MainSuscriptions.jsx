@@ -31,7 +31,7 @@ function MainSuscriptions() {
         </span>
       </div>
       <div className="flex justify-between gap-4 pt-6">
-        {data?.client_code != 0 ?? (
+        {data?.client_code != 0 ? (
           <div className="w-1/4 rounded-lg border border-slate-400 px-4 py-4 text-center hover:bg-slate-100">
             <h2 className="font-poppins text-[14px] font-bold text-[#44444F]">
               Codigo
@@ -40,14 +40,14 @@ function MainSuscriptions() {
               {data?.client_code}
             </h2>
           </div>
-        )}
-        {data?.client_code != 0 ?? (
-          <div className="max-w-1/4 w-1/4 rounded-lg border border-slate-400 px-4 py-4 text-center hover:bg-slate-100">
+        ) : null}
+        {data?.client_code != 0 ? (
+          <div className="w-1/4 max-w-48 rounded-lg border border-slate-400 px-4 py-4 text-center hover:bg-slate-100">
             <h2 className="font-poppins text-[14px] font-bold text-[#44444F]">
               Enlace
             </h2>
             <h2
-              className="cursor-pointer truncate font-poppins text-[14px] font-medium text-[#44444F]"
+              className="mt-4 cursor-pointer truncate font-poppins text-[14px] font-medium text-[#44444F]"
               title={`https://yacamba.com/checkout?code=${data?.client_code}`}
               onClick={() => {
                 navigator.clipboard.writeText(
@@ -58,7 +58,7 @@ function MainSuscriptions() {
               https://yacamba.com/checkout?code={data?.client_code}
             </h2>
           </div>
-        )}
+        ) : null}
         {data?.client_code == 0 ? (
           <div className="w-1/4 rounded-lg border border-slate-400 px-4 py-4 text-center hover:bg-slate-100">
             <h2 className="font-poppins text-[14px] font-bold text-[#44444F]">

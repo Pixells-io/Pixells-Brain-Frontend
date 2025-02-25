@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Outlet, NavLink } from "react-router-dom";
+import { Outlet, NavLink, useNavigate } from "react-router-dom";
 import {
   accessibilityOutline,
   cardOutline,
@@ -7,28 +7,58 @@ import {
   disc,
 } from "ionicons/icons";
 import { IonIcon } from "@ionic/react";
+import Cookies from "js-cookie";
+import { getUserByToken } from "./Login/utils";
 
 function SideLayout() {
-  const MENU_ITEMS = [
-    {
-      path: "/users",
-      name: "Usuarios",
-      subname: "Administracion",
-      icon: accessibilityOutline,
-    },
-    {
-      path: "/suscriptions",
-      name: "Suscripciones",
-      subname: "Stripe",
-      icon: cardOutline,
-    },
-    {
-      path: "/discounts",
-      name: "Descuentos",
-      subname: "Suscripciones",
-      icon: clipboardOutline,
-    },
-  ];
+  const token = Cookies.get("token");
+  const navigate = useNavigate();
+  const [userData, setUserData] = useState([]);
+
+  /* Login Validator */
+  useEffect(() => {
+    async function fetchData() {
+      const user = await getUserByToken();
+      if (user.code == 400) return navigate("/login");
+      setUserData(user?.data);
+      if (token == undefined || user.status == 500) return navigate("/login");
+    }
+    fetchData();
+  }, [token]);
+
+  let MENU_ITEMS = [];
+
+  if (userData?.role == 1) {
+    MENU_ITEMS = [
+      {
+        path: "/users",
+        name: "Usuarios",
+        subname: "Administracion",
+        icon: accessibilityOutline,
+      },
+      {
+        path: "/suscriptions",
+        name: "Suscripciones",
+        subname: "Stripe",
+        icon: cardOutline,
+      },
+      {
+        path: "/discounts",
+        name: "Descuentos",
+        subname: "Suscripciones",
+        icon: clipboardOutline,
+      },
+    ];
+  } else {
+    MENU_ITEMS = [
+      {
+        path: "/suscriptions",
+        name: "Suscripciones",
+        subname: "Stripe",
+        icon: cardOutline,
+      },
+    ];
+  }
 
   return (
     <div className="flex h-full w-full">

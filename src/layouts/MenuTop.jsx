@@ -13,6 +13,7 @@ import { logOut } from "ionicons/icons";
 import { Outlet, useNavigate } from "react-router-dom";
 import { getUserByToken } from "@/pages/Login/utils";
 import Cookies from "js-cookie";
+import { logOutRequest } from "@/lib/actions";
 
 function MenuTop() {
   const token = Cookies.get("token");
@@ -21,14 +22,26 @@ function MenuTop() {
 
   /* Login Validator */
   useEffect(() => {
+    if (!token) return navigate("/login");
+
     async function fetchData() {
       const user = await getUserByToken();
       if (user.code == 400) return navigate("/login");
       setUserData(user?.data);
-      if (token == undefined || user.status == 500) return navigate("/login");
+      if (user.status == 500) return navigate("/login");
     }
     fetchData();
   }, [token]);
+
+  async function logOutFunction() {
+    //First send the request
+    await logOutRequest();
+    //Remove token
+    Cookies.remove("token");
+
+    //Redirect to the login
+    return navigate("/login");
+  }
 
   return (
     <div className="h-screen min-h-0 overflow-hidden">
@@ -66,11 +79,11 @@ function MenuTop() {
                 </div>
               </div>
             </DropdownMenuLabel>
-            <DropdownMenuItem className="text-[#D7586B] hover:bg-blancoBox">
+            <DropdownMenuItem className="bg-red-100 text-red-500 hover:bg-red-200">
               <button
-                className="flex gap-4"
+                className="flex gap-4 px-4 py-2"
                 type="button"
-                //onClick={logOutFunction}
+                onClick={() => logOutFunction()}
               >
                 <IonIcon icon={logOut} className="h-5 w-5"></IonIcon>
                 Cerrar Sesión

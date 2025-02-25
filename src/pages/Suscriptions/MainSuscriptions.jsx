@@ -24,7 +24,7 @@ function MainSuscriptions() {
   };
 
   return (
-    <div className="px-10 py-10">
+    <div className="h-screen overflow-y-auto px-10 py-10">
       <div className="flex justify-between pt-4">
         <span className="font-poppins text-[20px] font-bold text-[#44444F]">
           Gestión de Suscripciones

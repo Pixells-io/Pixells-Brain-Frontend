@@ -5,8 +5,9 @@ import { createColumnHelper } from "@tanstack/react-table";
 import { IonIcon } from "@ionic/react";
 import { informationCircleOutline, trashOutline } from "ionicons/icons";
 import DataTable from "@/components/table/DataTable";
+import Cookies from "js-cookie";
 
-function SuscriptionsTable({ suscriptions }) {
+function SuscriptionsTable({ suscriptions, client_code }) {
   const columnHelper = createColumnHelper();
   const [initialData, setInitialData] = useState(suscriptions);
   const [data, setDataPusher] = useState(initialData);
@@ -28,6 +29,25 @@ function SuscriptionsTable({ suscriptions }) {
   const handleSearch = (value) => {
     setSearchTerm(value);
   };
+
+  async function handleDestroy(id) {
+    console.log(id);
+    const response = await fetch(
+      `${import.meta.env.VITE_SERVER_URL}suscriptions/destroy-suscription`,
+      {
+        method: "POST",
+        body: JSON.stringify({ client_id: id }),
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: "Bearer " + Cookies.get("token"),
+        },
+      },
+    );
+
+    console.log(response.json());
+
+    return response.json();
+  }
 
   const columns = [
     columnHelper.accessor((row) => `${row?.name}`, {
@@ -97,6 +117,47 @@ function SuscriptionsTable({ suscriptions }) {
               <span className="rounded-full bg-red-100 px-3 py-1 font-roboto text-red-600 hover:bg-red-200">
                 Cancelado
               </span>
+            )}
+          </div>
+        );
+      },
+    },
+    {
+      accessorKey: "STATUS",
+      header: "STATUS",
+      id: "Status",
+      cell: ({ row }) => {
+        return (
+          <div>
+            {row?.original?.status === "1" ? (
+              <span className="rounded-full bg-green-100 px-3 py-1 font-roboto text-green-600 hover:bg-green-200">
+                Activo
+              </span>
+            ) : row?.original?.status === "2" ? (
+              <span className="rounded-full bg-yellow-100 px-3 py-1 font-roboto text-yellow-600 hover:bg-yellow-200">
+                Vencido
+              </span>
+            ) : (
+              <>
+                {client_code != 0 ? (
+                  <span className="rounded-full bg-red-100 px-3 py-1 font-roboto text-red-600 hover:bg-red-200">
+                    Cancelado
+                  </span>
+                ) : (
+                  <div>
+                    <span className="rounded-full bg-red-100 px-3 py-1 font-roboto text-red-600 hover:bg-red-200">
+                      Cancelado
+                    </span>
+                    <button type="button">
+                      <IonIcon
+                        icon={trashOutline}
+                        className="cursor-pointer text-red-500"
+                        onClick={() => handleDestroy(row?.original?.id)}
+                      />
+                    </button>
+                  </div>
+                )}
+              </>
             )}
           </div>
         );

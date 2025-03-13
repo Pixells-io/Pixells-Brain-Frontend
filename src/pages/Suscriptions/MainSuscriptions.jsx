@@ -114,7 +114,10 @@ function MainSuscriptions() {
         )}
       </div>
       <div>
-        <SuscriptionsTable suscriptions={data?.suscriptions_all} />
+        <SuscriptionsTable
+          suscriptions={data?.suscriptions_all}
+          client_code={data?.client_code}
+        />
       </div>
     </div>
   );

@@ -78,23 +78,36 @@ function SuscriptionsTable({ suscriptions, client_code }) {
         return (
           <div>
             {row?.original?.suscription == "1" ? (
-              <span className="rounded-full bg-green-100 px-3 py-1 font-roboto text-green-600 hover:bg-green-200">
-                Profesional
-              </span>
+              <>
+                {row?.original?.email == "gcid@rysemedica.com.mx" ||
+                row?.original?.email == "panakosplasmamarino@gmail.com" ? (
+                  <span className="rounded-full bg-[#00A9B3] px-3 py-1 font-roboto text-white hover:bg-[#00aab3cf]">
+                    Enterprise
+                  </span>
+                ) : (
+                  <span className="rounded-full bg-[#008EF9] px-3 py-1 font-roboto text-white hover:bg-[#008df9de]">
+                    Lite
+                  </span>
+                )}
+              </>
             ) : row?.original?.suscription == "2" ? (
-              <span className="rounded-full bg-yellow-100 px-3 py-1 font-roboto text-yellow-600 hover:bg-yellow-200">
-                Punto de Venta
+              <span className="rounded-full bg-[#E9B51C] px-3 py-1 font-roboto text-white hover:bg-[#e9b61ce0]">
+                Lite (Pos)
               </span>
             ) : row?.original?.suscription == "3" ? (
-              <span className="rounded-full bg-yellow-100 px-3 py-1 font-roboto text-yellow-600 hover:bg-yellow-200">
-                CRM
+              <span className="rounded-full bg-[#7247CD] px-3 py-1 font-roboto text-white hover:bg-[#7147cdd2]">
+                Pro
               </span>
             ) : row?.original?.suscription == "4" ? (
-              <span className="rounded-full bg-yellow-100 px-3 py-1 font-roboto text-yellow-600 hover:bg-yellow-200">
-                Operativo
+              <span className="rounded-full bg-[#00A9B3] px-3 py-1 font-roboto text-white hover:bg-[#00aab3cf]">
+                Enterprise
+              </span>
+            ) : row?.original?.suscription == "5" ? (
+              <span className="rounded-full bg-[#5B89FF] px-3 py-1 font-roboto text-white hover:bg-[#5b89ffd3]">
+                CRM
               </span>
             ) : row?.original?.suscription == "6" ? (
-              <span className="rounded-full bg-yellow-100 px-3 py-1 font-roboto text-yellow-600 hover:bg-yellow-200">
+              <span className="rounded-full bg-[#3ACCA3] px-3 py-1 font-roboto text-white hover:bg-[#3acca3e0]">
                 Project Manager
               </span>
             ) : null}

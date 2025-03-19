@@ -78,18 +78,9 @@ function SuscriptionsTable({ suscriptions, client_code }) {
         return (
           <div>
             {row?.original?.suscription == "1" ? (
-              <>
-                {row?.original?.email == "gcid@rysemedica.com.mx" ||
-                row?.original?.email == "panakosplasmamarino@gmail.com" ? (
-                  <span className="rounded-full bg-[#00A9B3] px-3 py-1 font-roboto text-white hover:bg-[#00aab3cf]">
-                    Enterprise
-                  </span>
-                ) : (
-                  <span className="rounded-full bg-[#008EF9] px-3 py-1 font-roboto text-white hover:bg-[#008df9de]">
-                    Lite
-                  </span>
-                )}
-              </>
+              <span className="rounded-full bg-[#008EF9] px-3 py-1 font-roboto text-white hover:bg-[#008df9de]">
+                Lite
+              </span>
             ) : row?.original?.suscription == "2" ? (
               <span className="rounded-full bg-[#E9B51C] px-3 py-1 font-roboto text-white hover:bg-[#e9b61ce0]">
                 Lite (Pos)
